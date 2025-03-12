@@ -72,9 +72,19 @@ public class PeliculasWebService {
 	public Peliculas BuscarXNombre(@PathVariable("nombre") String nomb) {
 		return peliculasServImpl.BuscarXNombre(nomb);
 	}
-	
+	//http://localhost:9000/PeliculasWebService/buscarXGenero/Ciencia Ficcion
 	@GetMapping(path="buscarXGenero/{genero}")
 	public List<Peliculas> BuscarXGenero(@PathVariable("genero") String gen) {
 		return peliculasServImpl.BuscarXGenero(gen);
+	}
+	//http://localhost:9000/PeliculasWebService/eliminarXNombre/Tracender
+	@GetMapping(path="eliminarXNombre/{nombre}")
+	public ResponseEntity<String> Eliminar(@PathVariable("nombre") String nom) {
+		boolean elim = peliculasServImpl.EliminarXNombre(nom);
+		if(elim) {
+			return new ResponseEntity<String>("El elemento se elimino correctamente",HttpStatus.ACCEPTED);
+		}else {
+			return new ResponseEntity<String>("El elemento no se encontro y no se pudo eliminar",HttpStatus.OK);
+		}
 	}
 }

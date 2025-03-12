@@ -75,4 +75,17 @@ public class PeliculasServImpl {
 	public List<Peliculas> BuscarXGenero(String gen){
 		return peliculasDao.BuscarXGenero(gen);
 	}
+	@Transactional
+	public boolean EliminarXNombre(String nom) {
+		boolean ban = false;
+		for(Peliculas p:peliculasDao.findAll()) {
+			if(p.getNombre().equalsIgnoreCase(nom)) {
+				ban = true;
+				peliculasDao.delete(p);
+				break;
+			}
+		}
+		
+		return ban;
+	}
 }
