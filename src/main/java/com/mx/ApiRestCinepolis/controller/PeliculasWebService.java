@@ -67,4 +67,14 @@ public class PeliculasWebService {
 			return new ResponseEntity<String>("El elemento no existe",HttpStatus.OK);
 		}
 	}
+	//http://localhost:9000/PeliculasWebService/buscarXNombre/Tracender
+	@GetMapping(path="buscarXNombre/{nombre}")
+	public Peliculas BuscarXNombre(@PathVariable("nombre") String nomb) {
+		return peliculasServImpl.BuscarXNombre(nomb);
+	}
+	
+	@GetMapping(path="buscarXGenero/{genero}")
+	public List<Peliculas> BuscarXGenero(@PathVariable("genero") String gen) {
+		return peliculasServImpl.BuscarXGenero(gen);
+	}
 }

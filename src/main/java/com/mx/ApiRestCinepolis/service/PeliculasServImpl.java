@@ -65,4 +65,14 @@ public class PeliculasServImpl {
 		
 		return ban;
 	}
+	
+	@Transactional
+	public Peliculas BuscarXNombre(String nom) {
+		return peliculasDao.findByNombre(nom);
+	}
+	
+	@Transactional
+	public List<Peliculas> BuscarXGenero(String gen){
+		return peliculasDao.BuscarXGenero(gen);
+	}
 }
