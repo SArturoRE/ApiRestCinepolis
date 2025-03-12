@@ -54,4 +54,15 @@ public class PeliculasServImpl {
 		
 		return edit;
 	}
+	@Transactional
+	public boolean EliminarXId(Integer idPeli) {
+		Peliculas pelEncontrada = peliculasDao.findById(idPeli).orElse(null);
+		boolean ban = false;
+		if(pelEncontrada != null) {
+			peliculasDao.deleteById(idPeli);
+			ban = true;
+		}
+		
+		return ban;
+	}
 }

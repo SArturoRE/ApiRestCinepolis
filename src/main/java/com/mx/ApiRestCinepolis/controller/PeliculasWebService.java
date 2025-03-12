@@ -9,6 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -53,6 +54,17 @@ public class PeliculasWebService {
 			return new ResponseEntity<>(peli,HttpStatus.ACCEPTED);
 		}else {
 			return new ResponseEntity<>("La pelicula que desea editar no existe",HttpStatus.OK);
+		}
+	}
+	//http://localhost:9000/PeliculasWebService/eliminarXId/2
+	@PostMapping(path="eliminarXId/{idPeli}")
+	public ResponseEntity<String> EliminarXId(@PathVariable("idPeli") Integer idPeli){
+		boolean peliEncontrada = peliculasServImpl.EliminarXId(idPeli);
+		
+		if(peliEncontrada) {
+			return new ResponseEntity<String>("El elemento se elimino correctamente",HttpStatus.ACCEPTED);
+		}else {
+			return new ResponseEntity<String>("El elemento no existe",HttpStatus.OK);
 		}
 	}
 }
